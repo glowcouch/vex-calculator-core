@@ -4,6 +4,7 @@ use uom::si::length::inch;
 
 pub mod spacers;
 
+#[derive(Clone, Copy, Default, PartialEq)]
 pub struct VexLength {
     pub length: Length,
 }
