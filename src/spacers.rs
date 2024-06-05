@@ -82,14 +82,14 @@ pub struct VexSpacerSolution {
 }
 
 impl VexSpacerSolution {
-    fn get_thickness(&self) -> Length {
+    pub fn get_thickness(&self) -> Length {
         let mut thickness: Length = Length::default();
         for spacer in &self.spacers {
             thickness += spacer.thickness
         }
         thickness
     }
-    fn get_od(&self) -> Length {
+    pub fn get_od(&self) -> Length {
         let mut od: Length = Length::default();
         for spacer in &self.spacers {
             if spacer.od > od {
