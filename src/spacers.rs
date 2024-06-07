@@ -79,6 +79,7 @@ impl VexSpacer {
 pub struct VexSpacerSolution {
     pub spacers: Vec<VexSpacer>,
     pub perfect: bool,
+    pub target: Length,
 }
 
 impl VexSpacerSolution {

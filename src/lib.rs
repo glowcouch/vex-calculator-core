@@ -29,10 +29,12 @@ impl VexLength {
             if &spacers_length == length {
                 let mut current_solution = current_solution.clone();
                 current_solution.perfect = true;
+                current_solution.target = *length;
                 solutions.push(current_solution.clone());
             } else if &spacers_length > length {
                 let mut current_solution = current_solution.clone();
                 current_solution.perfect = false;
+                current_solution.target = *length;
                 solutions.push(current_solution.clone());
                 current_solution
                     .spacers
@@ -74,6 +76,7 @@ mod tests {
                 od: Length::new::<inch>(3.0 / 8.0),
             },],
             perfect: true,
+            target: Length::new::<inch>(0.25),
         }));
     }
 }
