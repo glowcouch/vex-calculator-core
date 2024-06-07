@@ -17,32 +17,32 @@ impl VexLength {
         fn recurse(
             length: &Length,
             spacers: &Vec<VexSpacer>,
-            current_soultion: VexSpacerSolution,
+            current_solution: VexSpacerSolution,
             solutions: &mut Vec<VexSpacerSolution>,
         ) {
             let mut spacers_length: Length = Length::default();
 
-            for spacer in current_soultion.spacers.clone() {
+            for spacer in current_solution.spacers.clone() {
                 spacers_length += spacer.thickness;
             }
 
             if &spacers_length == length {
-                let mut current_soultion = current_soultion.clone();
-                current_soultion.perfect = true;
-                solutions.push(current_soultion.clone());
+                let mut current_solution = current_solution.clone();
+                current_solution.perfect = true;
+                solutions.push(current_solution.clone());
             } else if &spacers_length > length {
-                let mut current_soultion = current_soultion.clone();
-                current_soultion.perfect = false;
-                solutions.push(current_soultion.clone());
-                current_soultion
+                let mut current_solution = current_solution.clone();
+                current_solution.perfect = false;
+                solutions.push(current_solution.clone());
+                current_solution
                     .spacers
-                    .remove(current_soultion.spacers.len() - 1);
-                solutions.push(current_soultion);
+                    .remove(current_solution.spacers.len() - 1);
+                solutions.push(current_solution);
             } else {
                 for spacer in spacers {
-                    let mut current_soultion = current_soultion.clone();
-                    current_soultion.spacers.push(spacer.clone());
-                    recurse(length, spacers, current_soultion.clone(), solutions);
+                    let mut current_solution = current_solution.clone();
+                    current_solution.spacers.push(spacer.clone());
+                    recurse(length, spacers, current_solution.clone(), solutions);
                 }
             }
         }
