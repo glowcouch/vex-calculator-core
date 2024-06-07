@@ -74,6 +74,7 @@ mod tests {
             spacers: vec![VexSpacer {
                 thickness: Length::new::<inch>(0.25),
                 od: Length::new::<inch>(3.0 / 8.0),
+                kind: "nylon spacer".to_string(),
             },],
             perfect: true,
             target: Length::new::<inch>(0.25),

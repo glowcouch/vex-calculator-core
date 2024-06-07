@@ -2,10 +2,11 @@ use std::fmt;
 use uom::si::f32::*;
 use uom::si::length::{inch, millimeter};
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, PartialEq)]
 pub struct VexSpacer {
     pub thickness: Length,
     pub od: Length,
+    pub kind: String,
 }
 
 impl fmt::Display for VexSpacer {
@@ -26,50 +27,61 @@ impl VexSpacer {
             VexSpacer {
                 thickness: Length::new::<millimeter>(8.0),
                 od: Length::new::<inch>(0.32),
+                kind: "8mm black plastic spacer".to_string(),
             },
             // 3/8" OD nylon spacers
             VexSpacer {
                 thickness: Length::new::<inch>(0.125),
                 od: Length::new::<inch>(3.0 / 8.0),
+                kind: "nylon spacer".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.25),
                 od: Length::new::<inch>(3.0 / 8.0),
+                kind: "nylon spacer".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.375),
                 od: Length::new::<inch>(3.0 / 8.0),
+                kind: "nylon spacer".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.5),
                 od: Length::new::<inch>(3.0 / 8.0),
+                kind: "nylon spacer".to_string(),
             },
             // 1/2" OD nylon spacers
             /*VexSpacer {
                 thickness: Length::new::<inch>(0.125),
                 od: Length::new::<inch>(1.0/2.0),
+                kind: "nylon".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.25),
                 od: Length::new::<inch>(1.0/2.0),
+                kind: "nylon".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.375),
                 od: Length::new::<inch>(1.0/2.0),
+                kind: "nylon".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.5),
                 od: Length::new::<inch>(1.0/2.0),
+                kind: "nylon".to_string(),
             },*/
             // Teflon washer
             VexSpacer {
                 thickness: Length::new::<inch>(0.04),
                 od: Length::new::<inch>(0.375),
+                kind: "teflon washer".to_string(),
             },
             // Steel washer
             VexSpacer {
                 thickness: Length::new::<inch>(0.032),
                 od: Length::new::<inch>(0.375),
+                kind: "steel washer".to_string(),
             },
         ]
     }
