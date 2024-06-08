@@ -54,22 +54,22 @@ impl VexSpacer {
             VexSpacer {
                 thickness: Length::new::<inch>(0.125),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon".to_string(),
+                kind: "nylon spacer".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.25),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon".to_string(),
+                kind: "nylon spacer".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.375),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon".to_string(),
+                kind: "nylon spacer".to_string(),
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.5),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon".to_string(),
+                kind: "nylon spacer".to_string(),
             },
             // Teflon washer
             VexSpacer {
