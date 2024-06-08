@@ -90,7 +90,6 @@ impl VexSpacer {
 #[derive(Clone, PartialEq, Default)]
 pub struct VexSpacerSolution {
     pub spacers: Vec<VexSpacer>,
-    pub perfect: bool,
     pub target: Length,
 }
 
@@ -110,5 +109,8 @@ impl VexSpacerSolution {
             }
         }
         od
+    }
+    pub fn is_perfect(&self) -> bool {
+        self.get_thickness() == self.target
     }
 }
