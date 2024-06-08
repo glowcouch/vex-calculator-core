@@ -110,6 +110,9 @@ impl VexSpacerSolution {
         }
         od
     }
+    pub fn get_error(&self) -> Length {
+        self.get_thickness() - self.target
+    }
     pub fn is_perfect(&self) -> bool {
         self.get_thickness() == self.target
     }
