@@ -2,11 +2,30 @@ use std::fmt;
 use uom::si::f32::*;
 use uom::si::length::{inch, millimeter};
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum VexSpacerKind {
+    Mm8BlackPlasticSpacer,
+    NylonSpacer,
+    TeflonWasher,
+    SteelWasher,
+}
+
+impl VexSpacerKind {
+    pub fn get_name(&self) -> String {
+        match self {
+            Self::Mm8BlackPlasticSpacer => "8mm black plastic spacer".to_string(),
+            Self::NylonSpacer => "nylon spacer".to_string(),
+            Self::TeflonWasher => "teflon washer".to_string(),
+            Self::SteelWasher => "steel washer".to_string(),
+        }
+    }
+}
+
 #[derive(Clone, PartialEq)]
 pub struct VexSpacer {
     pub thickness: Length,
     pub od: Length,
-    pub kind: String,
+    pub kind: VexSpacerKind,
 }
 
 impl fmt::Display for VexSpacer {
@@ -27,61 +46,61 @@ impl VexSpacer {
             VexSpacer {
                 thickness: Length::new::<millimeter>(8.0),
                 od: Length::new::<inch>(0.32),
-                kind: "8mm black plastic spacer".to_string(),
+                kind: VexSpacerKind::Mm8BlackPlasticSpacer,
             },
             // 3/8" OD nylon spacers
             /*VexSpacer {
                 thickness: Length::new::<inch>(0.125),
                 od: Length::new::<inch>(3.0 / 8.0),
-                kind: "nylon spacer".to_string(),
+                kind: 1,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.25),
                 od: Length::new::<inch>(3.0 / 8.0),
-                kind: "nylon spacer".to_string(),
+                kind: 1,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.375),
                 od: Length::new::<inch>(3.0 / 8.0),
-                kind: "nylon spacer".to_string(),
+                kind: 1,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.5),
                 od: Length::new::<inch>(3.0 / 8.0),
-                kind: "nylon spacer".to_string(),
+                kind: 1,
             },*/
             // 1/2" OD nylon spacers
             VexSpacer {
                 thickness: Length::new::<inch>(0.125),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon spacer".to_string(),
+                kind: VexSpacerKind::NylonSpacer,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.25),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon spacer".to_string(),
+                kind: VexSpacerKind::NylonSpacer,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.375),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon spacer".to_string(),
+                kind: VexSpacerKind::NylonSpacer,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.5),
                 od: Length::new::<inch>(1.0/2.0),
-                kind: "nylon spacer".to_string(),
+                kind: VexSpacerKind::NylonSpacer,
             },
             // Teflon washer
             VexSpacer {
                 thickness: Length::new::<inch>(0.04),
                 od: Length::new::<inch>(0.375),
-                kind: "teflon washer".to_string(),
+                kind: VexSpacerKind::TeflonWasher,
             },
             // Steel washer
             VexSpacer {
                 thickness: Length::new::<inch>(0.032),
                 od: Length::new::<inch>(0.375),
-                kind: "steel washer".to_string(),
+                kind: VexSpacerKind::SteelWasher,
             },
         ]
     }
@@ -117,6 +136,6 @@ impl VexSpacerSolution {
         self.get_thickness() == self.target
     }
     pub fn sort(&mut self){
-        self.spacers.sort_unstable_by(|a, b| (a.thickness, a.od, a.kind.clone()).partial_cmp(&(b.thickness, b.od, b.kind.clone())).unwrap());
+        self.spacers.sort_unstable_by(|a, b| (a.thickness, a.od, a.kind.get_name()).partial_cmp(&(b.thickness, b.od, b.kind.get_name())).unwrap());
     }
 }
