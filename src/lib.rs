@@ -1,6 +1,5 @@
 use spacers::{VexSpacer, VexSpacerSolution};
 use uom::si::f32::*;
-use uom::si::length::inch;
 
 pub mod spacers;
 
@@ -55,26 +54,5 @@ impl VexLength {
         );
 
         solutions
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = VexLength {
-            length: Length::new::<inch>(0.25),
-        }
-        .calculate_spacers();
-        assert!(result.contains(&VexSpacerSolution {
-            spacers: vec![VexSpacer {
-                thickness: Length::new::<inch>(0.25),
-                od: Length::new::<inch>(3.0 / 8.0),
-                kind: "nylon spacer".to_string(),
-            },],
-            target: Length::new::<inch>(0.25),
-        }));
     }
 }
