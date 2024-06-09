@@ -19,11 +19,7 @@ impl VexLength {
             current_solution: VexSpacerSolution,
             solutions: &mut Vec<VexSpacerSolution>,
         ) {
-            let mut spacers_length: Length = Length::default();
-
-            for spacer in current_solution.spacers.clone() {
-                spacers_length += spacer.thickness;
-            }
+            let spacers_length: Length = current_solution.get_thickness();
 
             if &spacers_length == length {
                 let mut current_solution = current_solution.clone();
