@@ -133,7 +133,7 @@ impl VexSpacerSolution {
         self.get_thickness() - self.target
     }
     pub fn is_perfect(&self) -> bool {
-        self.get_thickness() == self.target
+        (self.get_thickness() - self.target).abs() < Length::new::<inch>(0.001)
     }
     pub fn sort(&mut self){
         self.spacers.sort_unstable_by(|a, b| (a.thickness, a.od, a.kind.get_name()).partial_cmp(&(b.thickness, b.od, b.kind.get_name())).unwrap());
