@@ -22,11 +22,11 @@ impl VexLength {
             let spacers_length: Length = current_solution.get_thickness();
 
             if &spacers_length == length {
-                let mut current_solution = current_solution.clone();
+                let mut current_solution = current_solution;
                 current_solution.target = *length;
-                solutions.push(current_solution.clone());
+                solutions.push(current_solution);
             } else if &spacers_length > length {
-                let mut current_solution = current_solution.clone();
+                let mut current_solution = current_solution;
                 current_solution.target = *length;
                 solutions.push(current_solution.clone());
                 current_solution
