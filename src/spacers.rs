@@ -79,22 +79,22 @@ impl VexSpacer {
             // 1/2" OD nylon spacers
             VexSpacer {
                 thickness: Length::new::<inch>(0.125),
-                od: Length::new::<inch>(1.0/2.0),
+                od: Length::new::<inch>(1.0 / 2.0),
                 kind: VexSpacerKind::NylonSpacer,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.25),
-                od: Length::new::<inch>(1.0/2.0),
+                od: Length::new::<inch>(1.0 / 2.0),
                 kind: VexSpacerKind::NylonSpacer,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.375),
-                od: Length::new::<inch>(1.0/2.0),
+                od: Length::new::<inch>(1.0 / 2.0),
                 kind: VexSpacerKind::NylonSpacer,
             },
             VexSpacer {
                 thickness: Length::new::<inch>(0.5),
-                od: Length::new::<inch>(1.0/2.0),
+                od: Length::new::<inch>(1.0 / 2.0),
                 kind: VexSpacerKind::NylonSpacer,
             },
             // Teflon washer
@@ -142,8 +142,12 @@ impl VexSpacerSolution {
     pub fn is_perfect(&self) -> bool {
         (self.get_thickness() - self.target).abs() < Length::new::<inch>(0.001)
     }
-    pub fn sort(&mut self){
-        self.spacers.sort_unstable_by(|a, b| (a.thickness, a.od, a.kind.get_name()).partial_cmp(&(b.thickness, b.od, b.kind.get_name())).unwrap());
+    pub fn sort(&mut self) {
+        self.spacers.sort_unstable_by(|a, b| {
+            (a.thickness, a.od, a.kind.get_name())
+                .partial_cmp(&(b.thickness, b.od, b.kind.get_name()))
+                .unwrap()
+        });
     }
     pub fn get_washers(&self) -> u32 {
         let mut washers: u32 = 0;

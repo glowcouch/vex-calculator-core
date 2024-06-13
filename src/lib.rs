@@ -43,10 +43,18 @@ impl VexLength {
                 solutions.push(current_solution);
             } else {
                 for spacer in spacers {
-                    if !(current_solution.get_washers() >= cenario.max_washers && spacer.kind.is_washer()) {
+                    if !(current_solution.get_washers() >= cenario.max_washers
+                        && spacer.kind.is_washer())
+                    {
                         let mut current_solution = current_solution.clone();
                         current_solution.spacers.push(spacer.clone());
-                        recurse(length, spacers, &cenario, current_solution.clone(), solutions);
+                        recurse(
+                            length,
+                            spacers,
+                            &cenario,
+                            current_solution.clone(),
+                            solutions,
+                        );
                     }
                 }
             }
