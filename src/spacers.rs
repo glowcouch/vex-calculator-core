@@ -19,6 +19,13 @@ impl VexSpacerKind {
             Self::SteelWasher => "steel washer".to_string(),
         }
     }
+    pub fn is_washer(&self) -> bool {
+        match self {
+            Self::SteelWasher => true,
+            Self::TeflonWasher => true,
+            _other => false,
+        }
+    }
 }
 
 #[derive(Clone, PartialEq)]
@@ -137,5 +144,14 @@ impl VexSpacerSolution {
     }
     pub fn sort(&mut self){
         self.spacers.sort_unstable_by(|a, b| (a.thickness, a.od, a.kind.get_name()).partial_cmp(&(b.thickness, b.od, b.kind.get_name())).unwrap());
+    }
+    pub fn get_washers(&self) -> u32 {
+        let mut washers: u32 = 0;
+        for spacer in &self.spacers {
+            if spacer.kind.is_washer() {
+                washers += 1;
+            }
+        }
+        washers
     }
 }

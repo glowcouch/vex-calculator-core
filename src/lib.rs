@@ -1,6 +1,8 @@
 use spacers::{VexSpacer, VexSpacerSolution};
 use uom::si::f32::*;
 
+use crate::spacers::VexSpacerKind;
+
 pub mod spacers;
 
 #[derive(Clone, Copy, Default, PartialEq)]
@@ -8,14 +10,20 @@ pub struct VexLength {
     pub length: Length,
 }
 
+#[derive(Clone, Default, PartialEq)]
+pub struct VexSpacerSolveCenario {
+    pub max_washers: u32,
+}
+
 impl VexLength {
-    pub fn calculate_spacers(&self) -> Vec<VexSpacerSolution> {
+    pub fn calculate_spacers(&self, cenario: VexSpacerSolveCenario) -> Vec<VexSpacerSolution> {
         let mut solutions: Vec<VexSpacerSolution> = vec![];
         let spacers = spacers::VexSpacer::get_spacers();
 
         fn recurse(
             length: &Length,
             spacers: &Vec<VexSpacer>,
+            cenario: &VexSpacerSolveCenario,
             current_solution: VexSpacerSolution,
             solutions: &mut Vec<VexSpacerSolution>,
         ) {
@@ -35,9 +43,11 @@ impl VexLength {
                 solutions.push(current_solution);
             } else {
                 for spacer in spacers {
-                    let mut current_solution = current_solution.clone();
-                    current_solution.spacers.push(spacer.clone());
-                    recurse(length, spacers, current_solution.clone(), solutions);
+                    if !(current_solution.get_washers() >= cenario.max_washers && spacer.kind.is_washer()) {
+                        let mut current_solution = current_solution.clone();
+                        current_solution.spacers.push(spacer.clone());
+                        recurse(length, spacers, &cenario, current_solution.clone(), solutions);
+                    }
                 }
             }
         }
@@ -45,6 +55,7 @@ impl VexLength {
         recurse(
             &self.length,
             &spacers,
+            &cenario,
             VexSpacerSolution::default(),
             &mut solutions,
         );
