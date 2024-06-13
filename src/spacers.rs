@@ -1,24 +1,21 @@
 use std::fmt;
+use strum::Display;
 use uom::si::f32::*;
 use uom::si::length::{inch, millimeter};
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, Display)]
 pub enum VexSpacerKind {
+    #[strum(to_string = "8mm black plastic spacer")]
     Mm8BlackPlasticSpacer,
+    #[strum(to_string = "nylon spacer")]
     NylonSpacer,
+    #[strum(to_string = "teflon washer")]
     TeflonWasher,
+    #[strum(to_string = "steel washer")]
     SteelWasher,
 }
 
 impl VexSpacerKind {
-    pub fn get_name(&self) -> String {
-        match self {
-            Self::Mm8BlackPlasticSpacer => "8mm black plastic spacer".to_string(),
-            Self::NylonSpacer => "nylon spacer".to_string(),
-            Self::TeflonWasher => "teflon washer".to_string(),
-            Self::SteelWasher => "steel washer".to_string(),
-        }
-    }
     pub fn is_washer(&self) -> bool {
         match self {
             Self::SteelWasher => true,
@@ -144,8 +141,8 @@ impl VexSpacerSolution {
     }
     pub fn sort(&mut self) {
         self.spacers.sort_unstable_by(|a, b| {
-            (a.thickness, a.od, a.kind.get_name())
-                .partial_cmp(&(b.thickness, b.od, b.kind.get_name()))
+            (a.thickness, a.od, a.kind.to_string())
+                .partial_cmp(&(b.thickness, b.od, b.kind.to_string()))
                 .unwrap()
         });
     }

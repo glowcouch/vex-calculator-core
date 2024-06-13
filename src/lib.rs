@@ -1,8 +1,6 @@
 use spacers::{VexSpacer, VexSpacerSolution};
 use uom::si::f32::*;
 
-use crate::spacers::VexSpacerKind;
-
 pub mod spacers;
 
 #[derive(Clone, Copy, Default, PartialEq)]
