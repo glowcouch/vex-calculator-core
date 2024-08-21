@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+serde = { version = "1.0.208", features = ["dervie"] }
 strum = { version = "0.26.2", features = ["derive"] }
 uom = "0.36.0"
