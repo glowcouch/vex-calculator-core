@@ -3,12 +3,12 @@ use uom::si::f32::*;
 
 pub mod spacers;
 
-#[derive(Clone, Copy, Default, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Default, PartialEq)]
 pub struct VexLength {
     pub length: Length,
 }
 
-#[derive(Clone, Default, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Default, PartialEq)]
 pub struct VexSpacerSolveCenario {
     pub max_washers: u32,
 }

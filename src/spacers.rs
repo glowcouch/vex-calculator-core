@@ -1,10 +1,9 @@
-use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::Display;
 use uom::si::f32::*;
 use uom::si::length::{inch, millimeter};
 
-#[derive(Clone, Copy, PartialEq, Eq, Display, Serialize, Deserialize)]
+#[derive(Clone, Copy, PartialEq, Eq, Display)]
 pub enum VexSpacerKind {
     #[strum(to_string = "8mm black plastic spacer")]
     Mm8BlackPlasticSpacer,
@@ -26,7 +25,7 @@ impl VexSpacerKind {
     }
 }
 
-#[derive(Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, PartialEq)]
 pub struct VexSpacer {
     pub thickness: Length,
     pub od: Length,
@@ -111,7 +110,7 @@ impl VexSpacer {
     }
 }
 
-#[derive(Clone, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Default)]
 pub struct VexSpacerSolution {
     pub spacers: Vec<VexSpacer>,
     pub target: Length,
